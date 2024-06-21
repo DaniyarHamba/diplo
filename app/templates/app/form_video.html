@@ -1,0 +1,18 @@
+{% extends 'main/navbar.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2>Create Video</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                <a href="{% url 'video_list' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

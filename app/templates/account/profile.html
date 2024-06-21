@@ -1,0 +1,20 @@
+{% extends 'main/navbar.html' %}
+
+{% block div %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            {% if profile.image %}
+                <img src="{{ profile.image.url }}" alt="Profile Image" class="img-fluid rounded-circle mb-4" style="max-width: 200px;">
+                {% endif %}
+        </div>
+        <div class="col-md-8">
+            <h2>{{ user.username }}'s Profile</h2>
+            <p><strong>Country:</strong> {{ profile.country }}</p>
+            <p><strong>Age:</strong> {{ profile.age }}</p>
+            <a href="{% url 'edit_profile' %}" class="btn btn-primary mt-2">Edit Profile</a>
+            <a href="{% url 'mainpage' %}" class="btn btn-secondary mt-2">Back to main page</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
