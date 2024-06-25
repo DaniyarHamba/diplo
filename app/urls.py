@@ -15,7 +15,7 @@ urlpatterns = [
 
     path('profile/', views.ProfileDetailView.as_view(), name='profile'),
     path('profile/edit/', views.ProfileUpdateView.as_view(), name='edit_profile'),
-    path('cp/', views.PasswordChangeView.as_view(), name='change_password'),
+    path('cp/', views.UserPasswordChangeView.as_view(), name='change_password'),
     path('comment/<int:pk>/edit/', views.CommentUpdate.as_view(), name='comment_edit'),
     path('comment/<int:pk>/delete/', views.CommentDelete.as_view(), name='comment_delete'),
     path('post/<int:pk>/update/', views.PostUpdateView.as_view(), name='post_update'),
@@ -26,6 +26,7 @@ urlpatterns = [
     path('stream/<int:pk>/', views.get_streaming_video, name='stream'),
     path('video/<int:pk>/update/', views.VideoUpdateView.as_view(), name='video_update'),
     path('video/<int:pk>/delete/', views.VideoDeleteView.as_view(), name='video_delete'),
+    path('password_change/done/', views.BPasswordChangeDoneView.as_view(), name='password_change_done')
 ]
 
 

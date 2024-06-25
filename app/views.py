@@ -1,7 +1,7 @@
 from django.views.generic.edit import CreateView, FormMixin, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .forms import SignUpForm
-from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.shortcuts import get_object_or_404, redirect
@@ -39,6 +39,7 @@ class VideoListView(ListView):
     model = Video
     context_object_name = 'videos'
     template_name = 'app/video_list.html'
+    paginate_by = 3
 
 
 class VideoDetailView(DetailView):
@@ -69,9 +70,14 @@ def get_streaming_video(request, pk: int):
     return response
 
 
+
+class BPasswordChangeDoneView(PasswordChangeDoneView):
+    template_name = 'login/password_change_done.html'
+
+
 class UserPasswordChangeView(PasswordChangeView):
     template_name = 'account/change_password.html'
-    success_url = '/'
+    success_url = reverse_lazy('password_change_done')
 
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
